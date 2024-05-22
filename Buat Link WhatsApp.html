@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)https://buatlinkwhatsapp.blogspot.com/ -->
+<html lang="ms" xmlns="http://www.w3.org/1999/xhtml" xmlns:b="http://www.google.com/2005/gml/b" xmlns:data="http://www.google.com/2005/gml/data" xmlns:expr="http://www.google.com/2005/gml/expr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="./Buat Link WhatsApp_files/55013136-widget_css_bundle.css" rel="stylesheet" type="text/css">
+
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Buat Link WhatsApp</title>
+<meta content="Cara buat link WhatsApp online dengan mudah." name="description">
+<link href="./Buat Link WhatsApp_files/bootstrap.min.css" rel="stylesheet">
+<style id="page-skin-1" type="text/css"><!--
+
+--></style>
+<style>
+        body {
+            background-color: #121212;
+            color: #e4e6eb;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0; /* Remove default margin */
+            padding: 0; /* Remove default padding */
+        }
+
+        .container {
+            background-color: #1e1e1e;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            max-width: 500px;
+            margin: 0 auto; /* Center the container horizontally */
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        .btn-primary {
+            background-color: #25d366;
+            border-color: #25d366;
+        }
+
+        .btn-primary:hover {
+            background-color: #128c7e;
+            border-color: #128c7e;
+        }
+
+        .form-control {
+            border-radius: 0; /* Remove rounded corners */
+            background-color: #333;
+            color: #e4e6eb;
+            border: none;
+        }
+
+        .input-group-text {
+            background-color: #25d366;
+            color: #fff;
+            border: none;
+        }
+
+        #whatsappLink {
+            border-radius: 0; /* Remove rounded corners */
+            background-color: #333;
+            color: #e4e6eb;
+            border: none;
+        }
+
+        .copy-feedback {
+            display: none;
+            color: #25d366;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+
+        .fade-out {
+            animation: fadeOut 2s ease-in-out forwards;
+        }
+        .clickable-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0px;
+            text-decoration: none;
+            color: inherit;
+        }
+        .image img {
+            width: 300px; /* Set image size to 200px */
+            max-width: 100%;
+        }
+        .text {
+            max-width: 490px;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: white;
+        }
+        .text h1, .text p {
+            font-size: 18px;
+            margin: 0; /* Remove margin to close the gap */
+        }
+        .text .highlight {
+            font-size: 18px;
+            color: #EE4D2D;
+        }
+    </style>
+<meta name="google-adsense-platform-account" content="ca-host-pub-1556223355139109">
+<meta name="google-adsense-platform-domain" content="blogspot.com">
+
+</head>
+<body>
+<div class="container">
+<div class="form-group">
+<label for="phoneNumber">Nombor WhatsApp 👇🏻</label>
+<div class="input-group">
+<div class="input-group-prepend">
+<span class="input-group-text" id="countryCode">🇲🇾 +60</span>
+</div>
+<input class="form-control" id="phoneNumber" placeholder="0123456789" type="text">
+</div>
+</div>
+<div class="form-group">
+<label for="message">Mesej (tak wajib) 👇🏻</label>
+<input class="form-control" id="message" placeholder="hai nak save" type="text">
+</div>
+<button class="btn btn-primary btn-block" onclick="generateWhatsAppLink()" type="button">Buat Link WhatsApp </button>
+<div class="mt-3">
+<p>Link Anda 👇🏻</p>
+<div class="input-group">
+<input class="form-control" id="whatsappLink" placeholder="link siap di sini" readonly="" type="text">
+</div>
+<button class="btn btn-primary btn-block mt-2" onclick="copyToClipboard()" type="button">Salin Link</button>
+<div class="copy-feedback mt-2" id="copyFeedback">Link disalin ke papan klip!</div>
+</div>
+<a class="clickable-container" href="https://s.shopee.com.my/VkuLPYQFS" rel="noopener" target="_blank">
+<div class="image"><br>
+<img alt="Barang Motor Ori" src="./Buat Link WhatsApp_files/100% (2).gif">
+</div>
+<div class="text">
+<h1>👆🏻 Kedai barang motor ori dan murah! 👆🏻</h1>
+<p>Tekan sini kalau nak beli</p>
+<p class="highlight">★★★★★</p>
+</div>
+</a>
+</div>
+<script>
+    async function getCountryCode() {
+        try {
+            const response = await fetch('https://ipapi.co/json/');
+            if (!response.ok) {
+                throw new Error('Respons rangkaian tidak ok');
+            }
+            const data = await response.json();
+            const countryCode = data.country_calling_code;
+            const countryFlag = getCountryFlag(data.country_code);
+            document.getElementById('countryCode').innerHTML = `${countryFlag} ${countryCode}`;
+        } catch (error) {
+            console.error('Ralat mendapatkan kod negara:', error);
+            document.getElementById('countryCode').innerHTML = 'N/A';
+        }
+    }
+
+    function getCountryFlag(countryCode) {
+        const codePoints = countryCode.toUpperCase().split('').map(char => 127397 + char.charCodeAt(0));
+        return String.fromCodePoint(...codePoints);
+    }
+
+    getCountryCode();
+
+    function generateWhatsAppLink() {
+        let phoneNumber = document.getElementById('phoneNumber').value.trim();
+        const message = document.getElementById('message').value.trim();
+        const countryCodeElement = document.getElementById('countryCode');
+
+        if (!phoneNumber) {
+            alert("Sila masukkan nombor telefon.");
+            return;
+        }
+
+        if (countryCodeElement.innerHTML === 'N/A') {
+            alert("Kod negara tidak dapat diperoleh.");
+            return;
+        }
+
+        // Extract the country code from the countryCode element
+        const countryCode = countryCodeElement.innerText.split(' ')[1]; // Split by space and take the second part
+
+        // Remove any non-numeric characters from the phone number
+        phoneNumber = phoneNumber.replace(/\D/g, '');
+
+        // Remove leading zero if it exists
+        if (phoneNumber.startsWith('0')) {
+            phoneNumber = phoneNumber.substring(1);
+        }
+
+        // Encode the message and replace %20 with +
+        const encodedMessage = encodeURIComponent(message).replace(/%20/g, '+');
+
+        // Construct the WhatsApp link with the country code and cleaned phone number
+        let whatsappLink = `https://wa.me/${encodeURIComponent(countryCode.replace('+', ''))}${phoneNumber}`;
+        
+        // Append the message if provided
+        if (message) {
+            whatsappLink += `?text=${encodedMessage}`;
+        }
+
+        // Set the generated link to the input field
+        document.getElementById('whatsappLink').value = whatsappLink;
+    }
+
+    function copyToClipboard() {
+        const whatsappLink = document.getElementById('whatsappLink');
+        whatsappLink.select();
+        document.execCommand('copy');
+        document.getElementById('copyFeedback').style.display = 'block';
+        document.getElementById('copyFeedback').classList.add('fade-out');
+        setTimeout(() => {
+            document.getElementById('copyFeedback').style.display = 'none';
+            document.getElementById('copyFeedback').classList.remove('fade-out');
+        }, 2000);
+    }
+</script>
+<div class="navbar no-items section" id="navbar"></div>
+
+<script type="text/javascript" src="./Buat Link WhatsApp_files/3642221003-widgets.js.download"></script>
+<script type="text/javascript">
+window['__wavt'] = 'AOuZoY7uDJ0er2MbVAClaCbZeKK7aYab3g:1716380925072';_WidgetManager._Init('//www.blogger.com/rearrange?blogID\x3d6894593617457659330','//buatlinkwhatsapp.blogspot.com/','6894593617457659330');
+_WidgetManager._SetDataContext([{'name': 'blog', 'data': {'blogId': '6894593617457659330', 'title': 'Buat Link WhatsApp', 'url': 'https://buatlinkwhatsapp.blogspot.com/', 'canonicalUrl': 'http://buatlinkwhatsapp.blogspot.com/', 'homepageUrl': 'https://buatlinkwhatsapp.blogspot.com/', 'searchUrl': 'https://buatlinkwhatsapp.blogspot.com/search', 'canonicalHomepageUrl': 'http://buatlinkwhatsapp.blogspot.com/', 'blogspotFaviconUrl': 'https://buatlinkwhatsapp.blogspot.com/favicon.ico', 'bloggerUrl': 'https://www.blogger.com', 'hasCustomDomain': false, 'httpsEnabled': true, 'enabledCommentProfileImages': true, 'gPlusViewType': 'FILTERED_POSTMOD', 'adultContent': false, 'analyticsAccountNumber': '', 'encoding': 'UTF-8', 'locale': 'ms', 'localeUnderscoreDelimited': 'ms', 'languageDirection': 'ltr', 'isPrivate': false, 'isMobile': false, 'isMobileRequest': false, 'mobileClass': '', 'isPrivateBlog': false, 'isDynamicViewsAvailable': true, 'feedLinks': '\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Buat Link WhatsApp - Atom\x22 href\x3d\x22https://buatlinkwhatsapp.blogspot.com/feeds/posts/default\x22 /\x3e\n\x3clink rel\x3d\x22alternate\x22 type\x3d\x22application/rss+xml\x22 title\x3d\x22Buat Link WhatsApp - RSS\x22 href\x3d\x22https://buatlinkwhatsapp.blogspot.com/feeds/posts/default?alt\x3drss\x22 /\x3e\n\x3clink rel\x3d\x22service.post\x22 type\x3d\x22application/atom+xml\x22 title\x3d\x22Buat Link WhatsApp - Atom\x22 href\x3d\x22https://www.blogger.com/feeds/6894593617457659330/posts/default\x22 /\x3e\n', 'meTag': '', 'adsenseHostId': 'ca-host-pub-1556223355139109', 'adsenseHasAds': false, 'adsenseAutoAds': false, 'boqCommentIframeForm': true, 'loginRedirectParam': '', 'view': '', 'dynamicViewsCommentsSrc': '//www.blogblog.com/dynamicviews/4224c15c4e7c9321/js/comments.js', 'dynamicViewsScriptSrc': '//www.blogblog.com/dynamicviews/e60592453d0298d4', 'plusOneApiSrc': 'https://apis.google.com/js/platform.js', 'disableGComments': true, 'interstitialAccepted': false, 'sharing': {'platforms': [{'name': 'Dapatkan pautan', 'key': 'link', 'shareMessage': 'Dapatkan pautan', 'target': ''}, {'name': 'Facebook', 'key': 'facebook', 'shareMessage': 'Kongsi ke Facebook', 'target': 'facebook'}, {'name': 'BlogThis!', 'key': 'blogThis', 'shareMessage': 'BlogThis!', 'target': 'blog'}, {'name': 'Twitter', 'key': 'twitter', 'shareMessage': 'Kongsi ke Twitter', 'target': 'twitter'}, {'name': 'Pinterest', 'key': 'pinterest', 'shareMessage': 'Kongsi ke Pinterest', 'target': 'pinterest'}, {'name': 'E-mel', 'key': 'email', 'shareMessage': 'E-mel', 'target': 'email'}], 'disableGooglePlus': true, 'googlePlusShareButtonWidth': 0, 'googlePlusBootstrap': '\x3cscript type\x3d\x22text/javascript\x22\x3ewindow.___gcfg \x3d {\x27lang\x27: \x27ms\x27};\x3c/script\x3e'}, 'hasCustomJumpLinkMessage': false, 'jumpLinkMessage': 'Baca lagi', 'pageType': 'index', 'pageName': '', 'pageTitle': 'Buat Link WhatsApp'}}, {'name': 'features', 'data': {}}, {'name': 'messages', 'data': {'edit': 'Edit', 'linkCopiedToClipboard': 'Pautan disalin ke papan keratan!', 'ok': 'Ok', 'postLink': 'Pautan Catatan'}}, {'name': 'template', 'data': {'name': 'custom', 'localizedName': 'Peribadi', 'isResponsive': false, 'isAlternateRendering': false, 'isCustom': true}}, {'name': 'view', 'data': {'classic': {'name': 'classic', 'url': '?view\x3dclassic'}, 'flipcard': {'name': 'flipcard', 'url': '?view\x3dflipcard'}, 'magazine': {'name': 'magazine', 'url': '?view\x3dmagazine'}, 'mosaic': {'name': 'mosaic', 'url': '?view\x3dmosaic'}, 'sidebar': {'name': 'sidebar', 'url': '?view\x3dsidebar'}, 'snapshot': {'name': 'snapshot', 'url': '?view\x3dsnapshot'}, 'timeslide': {'name': 'timeslide', 'url': '?view\x3dtimeslide'}, 'isMobile': false, 'title': 'Buat Link WhatsApp', 'description': 'Cara buat link WhatsApp online dengan mudah', 'url': 'https://buatlinkwhatsapp.blogspot.com/', 'type': 'feed', 'isSingleItem': false, 'isMultipleItems': true, 'isError': false, 'isPage': false, 'isPost': false, 'isHomepage': true, 'isArchive': false, 'isLabelSearch': false}}]);
+</script>
+
+</body></html>
